@@ -1,0 +1,19 @@
+body {
+    margin-top: 70px;
+}
+
+.bg-nav {
+    background-color: #314855;
+}
+
+.text-primary {
+    color: #314855 !important;
+}
+
+.btn-primary {
+    background-color: #314855 !important;
+    border-color: #314855 !important;
+}
+
+
+
