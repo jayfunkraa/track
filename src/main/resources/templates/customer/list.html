@@ -15,24 +15,37 @@
     </div>
     <div class="row">
         <div class="col-md-12 mt-1">
-            <ul class="list-group">
-                <li class="list-group-item" th:each="customer : ${customers}">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <span th:text="${customer.name}"></span>
-                        </div>
-                        <div class="col-md-2 text-right">
-                            <a th:href="@{'/customer/edit/' + ${customer.id}}" class="text-secondary">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
-                            <a href="#" class="text-secondary ml-2" th:data-customer-id="${customer.id}" th:data-customer-name="${customer.name}"
-                               data-toggle="modal" data-target="#delete-modal">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
+            <div id="accordion">
+                <div th:each="customer : ${customers}" class="card mb-1">
+                    <div class="card-header" data-toggle="collapse" style="cursor: pointer;"
+                         th:data-target="'#collapse-' + ${customer.id}">
+                        <div class="row">
+                            <div class="col-md-10">
+                                    <span class="mb-0" th:text="${customer.name}"></span>
+                            </div>
+                            <div class="col-md-2 text-right">
+                                <a th:href="@{'/customer/edit/' + ${customer.id}}" class="text-secondary">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <a href="#" class="text-secondary ml-2" th:data-customer-id="${customer.id}"
+                                   th:data-customer-name="${customer.name}"
+                                   data-toggle="modal" data-target="#delete-modal">
+                                    <i class="fas fa-trash-alt"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </li>
-            </ul>
+                    <div th:id="'collapse-' + ${customer.id}" class="collapse" data-parent="#accordion">
+                        <div class="card-body">
+                            <h6>Projects</h6>
+                            <ul class="list-group m-0">
+                                <li th:each="project : ${customer.projects}" class="list-group-item"
+                                    th:text="${project.name}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="modal" id="delete-modal" tabindex="-1">
@@ -66,6 +79,12 @@
             $('#delete-button').attr('href', '/customer/delete/' + customerId);
             $('#delete-modal-body').text('Are you sure you wish to delete customer \'' + customerName + '\'?');
         });
+
+
+
+
+
+
     </script>
 </div>
 </body>

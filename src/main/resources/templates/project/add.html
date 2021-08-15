@@ -18,8 +18,15 @@
                     <input type="text" class="form-control" name="name" id="name" th:field="*{name}" autofocus/>
                 </div>
                 <div class="form-group">
-                <a class="btn btn-outline-secondary" th:href="@{/projects}">Cancel</a>
-                <button class="btn btn-primary ml-2" type="submit">Add</button>
+                    <label for="customer" class="form-label">Customer</label>
+                    <select name="customerId" id="customer" class="form-control">
+                        <option th:each="customer : ${customers}" th:value="${customer.id}" class="form-control"
+                                 th:text="${customer.name}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-outline-secondary" th:href="@{/projects}">Cancel</a>
+                    <button class="btn btn-primary ml-2" type="submit">Add</button>
                 </div>
             </form>
         </div>

@@ -1,9 +1,7 @@
 package uk.co.jamhammer.track.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Customer {
@@ -11,8 +9,13 @@ public class Customer {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
+
+  @Column(nullable = false)
   private String name;
   private String address;
+
+  @OneToMany(mappedBy = "customer")
+  private List<Project> projects;
 
   public Customer() {
   }
@@ -39,5 +42,13 @@ public class Customer {
 
   public void setAddress(String address) {
     this.address = address;
+  }
+
+  public List<Project> getProjects() {
+    return projects;
+  }
+
+  public void setProjects(List<Project> projects) {
+    this.projects = projects;
   }
 }

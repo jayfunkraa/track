@@ -1,9 +1,6 @@
 package uk.co.jamhammer.track.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Project {
@@ -12,7 +9,14 @@ public class Project {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
+  @Column(nullable = false)
   private String name;
+
+  @ManyToOne
+  private Customer customer;
+
+  public Project() {
+  }
 
   public long getId() {
     return id;
@@ -22,14 +26,18 @@ public class Project {
     this.id = id;
   }
 
-  public Project() {
-  }
-
   public String getName() {
     return name;
   }
 
   public void setName(String name) {
     this.name = name;
+  }
+  public Customer getCustomer() {
+    return customer;
+  }
+
+  public void setCustomer(Customer customer) {
+    this.customer = customer;
   }
 }

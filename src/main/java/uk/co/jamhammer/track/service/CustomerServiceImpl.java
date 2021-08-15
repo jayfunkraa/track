@@ -1,10 +1,11 @@
 package uk.co.jamhammer.track.service;
 
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.co.jamhammer.track.data.CustomerDao;
 import uk.co.jamhammer.track.model.Customer;
+
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{

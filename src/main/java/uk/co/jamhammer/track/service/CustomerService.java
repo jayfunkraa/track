@@ -3,6 +3,7 @@ package uk.co.jamhammer.track.service;
 import java.util.Optional;
 import uk.co.jamhammer.track.model.Booking;
 import uk.co.jamhammer.track.model.Customer;
+import uk.co.jamhammer.track.model.Project;
 
 public interface CustomerService {
   Iterable<Customer> findAll();

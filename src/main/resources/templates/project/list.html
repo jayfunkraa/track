@@ -20,6 +20,7 @@
                     <div class="row">
                         <div class="col-md-10">
                             <span th:text="${project.name}"></span>
+                            <span class="text-secondary ml-1" th:text="${project.customer.name}"></span>
                         </div>
                         <div class="col-md-2 text-right">
                             <a th:href="@{'/project/edit/' + ${project.id}}" class="text-secondary">
