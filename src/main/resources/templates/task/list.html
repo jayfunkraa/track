@@ -15,24 +15,36 @@
     </div>
     <div class="row">
         <div class="col-md-12 mt-1">
-            <ul class="list-group">
-                <li class="list-group-item" th:each="task : ${tasks}">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <span th:text="${task.title}"></span>
-                        </div>
-                        <div class="col-md-2 text-right">
-                            <a th:href="@{'/task/edit/' + ${task.id}}" class="text-secondary">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
-                            <a href="#" class="text-secondary ml-2" th:data-task-id="${task.id}" th:data-task-title="${task.title}"
-                               data-toggle="modal" data-target="#delete-modal">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+
+            <table class="table">
+                <thead class="table-light">
+                <tr>
+                    <th>Customer</th>
+                    <th>Project</th>
+                    <th>Task</th>
+                    <th>Chargeable</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="task : ${tasks}">
+                    <td th:text="${task.project.customer.name}"></td>
+                    <td th:text="${task.project.name}"></td>
+                    <td th:text="${task.title}"></td>
+                    <td><i th:classappend="${task.chargeable} ? 'fas fa-check'"></i></td>
+                    <td>
+                        <a th:href="@{'/task/edit/' + ${task.id}}" class="text-secondary">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <a href="#" class="text-secondary ml-2" th:data-task-id="${task.id}"
+                           th:data-task-title="${task.title}"
+                           data-toggle="modal" data-target="#delete-modal">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="modal" id="delete-modal" tabindex="-1">
@@ -66,6 +78,8 @@
             $('#delete-button').attr('href', '/task/delete/' + taskId);
             $('#delete-modal-body').text('Are you sure you wish to delete task \'' + taskTitle + '\'?');
         });
+
+
     </script>
 </div>
 </body>

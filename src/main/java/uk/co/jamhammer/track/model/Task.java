@@ -1,9 +1,6 @@
 package uk.co.jamhammer.track.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Task {
@@ -15,6 +12,9 @@ public class Task {
   private String title;
   private String description;
   private boolean chargeable;
+
+  @ManyToOne
+  private Project project;
 
   public Task() {
   }
@@ -49,5 +49,13 @@ public class Task {
 
   public void setChargeable(boolean chargeable) {
     this.chargeable = chargeable;
+  }
+
+  public Project getProject() {
+    return project;
+  }
+
+  public void setProject(Project project) {
+    this.project = project;
   }
 }

@@ -5,35 +5,33 @@
 <div th:replace="layout :: nav('project')"></div>
 
 <main class="container">
-    <div class="row">
+    <div class="row rounded bg-white shadow-sm mb-3 p-2">
         <div class="col-md-10">
             <h2 class="display-4">Projects</h2>
         </div>
-        <div class="col-md-2 my-auto text-right">
-            <a class="btn btn-primary" th:href="@{/project/add}"><i class="far fa-plus"></i></a>
+        <div class="col-md-2 my-auto text-end">
+            <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-modal"><i class="far fa-plus"></i></button>
         </div>
     </div>
-    <div class="row">
+    <div class="row rounded bg-white shadow-sm p-2">
         <div class="col-md-12 mt-1">
-            <ul class="list-group">
-                <li class="list-group-item" th:each="project : ${projects}">
-                    <div class="row">
-                        <div class="col-md-10">
-                            <span th:text="${project.name}"></span>
-                            <span class="text-secondary ml-1" th:text="${project.customer.name}"></span>
-                        </div>
-                        <div class="col-md-2 text-right">
-                            <a th:href="@{'/project/edit/' + ${project.id}}" class="text-secondary">
-                                <i class="fas fa-pencil-alt"></i>
-                            </a>
-                            <a href="#" class="text-secondary ml-2" th:data-project-id="${project.id}" th:data-project-name="${project.name}"
-                               data-toggle="modal" data-target="#delete-modal">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Customer</th>
+                    <th>Hours Booked</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="project : ${projects}" th:onclick="'window.location = \'/project/view/' + ${project.id} + '\''"
+                    style="cursor:pointer;">
+                    <td th:text="${project.name}"></td>
+                    <td th:text="${project.customer.name}"></td>
+                    <td>0:00</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <div class="modal" id="delete-modal" tabindex="-1">
@@ -51,6 +49,34 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Cancel</button>
                     <a href="#" class="btn btn-danger" id="delete-button">Delete</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="add-modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Project</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form th:action="@{/project}" method="post" th:object="${project}">
+                        <div class="mb-3">
+                            <label class="form-label" for="name">Name</label>
+                            <input type="text" class="form-control" name="name" id="name" th:field="*{name}"/>
+                        </div>
+                        <div class="mb-3">
+                            <label for="customer" class="form-label">Customer</label>
+                            <select name="customerId" id="customer" class="form-control">
+                                <option th:each="customer : ${customers}" th:value="${customer.id}" class="form-control"
+                                        th:text="${customer.name}"></option>
+                            </select>
+                        </div>
+                        <div class="text-end">
+                            <button class="btn btn-primary" type="submit">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

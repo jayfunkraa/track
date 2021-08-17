@@ -17,6 +17,7 @@ public class User {
   private String firstName;
   private String lastName;
   private double dailyBookingRequirement;
+  private boolean isAdmin;
 
   public User() {
   }
@@ -67,5 +68,13 @@ public class User {
 
   public void setDailyBookingRequirement(double dailyBookingRequirement) {
     this.dailyBookingRequirement = dailyBookingRequirement;
+  }
+
+  public boolean isAdmin() {
+    return isAdmin;
+  }
+
+  public void setAdmin(boolean admin) {
+    isAdmin = admin;
   }
 }
