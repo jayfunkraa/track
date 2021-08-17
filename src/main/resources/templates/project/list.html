@@ -28,7 +28,7 @@
                     style="cursor:pointer;">
                     <td th:text="${project.name}"></td>
                     <td th:text="${project.customer.name}"></td>
-                    <td>0:00</td>
+                    <td th:text="${project.totalHours}"></td>
                 </tr>
                 </tbody>
             </table>

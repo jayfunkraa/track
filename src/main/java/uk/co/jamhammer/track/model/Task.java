@@ -70,4 +70,12 @@ public class Task {
   public void setBookings(List<Booking> bookings) {
     this.bookings = bookings;
   }
+
+  public double getTotalHours() {
+    double total = 0;
+    for (Booking booking : getBookings()) {
+      total += booking.getHours();
+    }
+    return total;
+  }
 }

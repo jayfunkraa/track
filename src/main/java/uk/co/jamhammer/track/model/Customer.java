@@ -51,4 +51,16 @@ public class Customer {
   public void setProjects(List<Project> projects) {
     this.projects = projects;
   }
+
+  public double getTotalHours() {
+    double total = 0;
+    for (Project project : getProjects()) {
+      for (Task task : project.getTasks()) {
+        for (Booking booking : task.getBookings()) {
+          total += booking.getHours();
+        }
+      }
+    }
+    return total;
+  }
 }

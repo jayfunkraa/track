@@ -52,4 +52,14 @@ public class Project {
   public void setTasks(List<Task> tasks) {
     this.tasks = tasks;
   }
+
+  public double getTotalHours() {
+    double total = 0;
+    for (Task task : getTasks()) {
+      for (Booking booking : task.getBookings()) {
+        total += booking.getHours();
+      }
+    }
+    return total;
+  }
 }

@@ -42,7 +42,7 @@
                 <tr th:each="task : ${project.tasks}">
                     <td th:text="${task.title}"></td>
                     <td class="text-center"><i th:classappend="${task.chargeable} ? 'fas fa-check'"></i></td>
-                    <td>0:00</td>
+                    <td th:text="${task.totalHours}"></td>
                     <td class="text-end">
                         <span class="text-secondary" style="cursor: pointer;" data-bs-toggle="modal" data-bs-target="#edit-task-modal"
                         th:data-task-id="${task.id}"

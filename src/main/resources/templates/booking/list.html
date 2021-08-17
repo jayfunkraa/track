@@ -33,7 +33,7 @@
                 <td th:text="${booking.task.project.customer.name}"></td>
                 <td th:text="${booking.task.project.name}"></td>
                 <td th:text="${booking.task.title}"></td>
-                <td th:text="${booking.hours}"></td>
+                <td th:text="|${booking.hours} (${booking.timeSpanHours})|"></td>
                 <td th:text="${booking.remarks}"></td>
                 <td class="text-end">
                     <i class="fas fa-trash-alt"></i>

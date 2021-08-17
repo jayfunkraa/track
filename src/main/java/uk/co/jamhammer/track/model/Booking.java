@@ -13,8 +13,10 @@ public class Booking {
   private long id;
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+  @Column(nullable = false)
   private LocalDate date;
 
+  @Column(nullable = false)
   private double hours;
   private String remarks;
 
@@ -62,5 +64,12 @@ public class Booking {
 
   public void setTask(Task task) {
     this.task = task;
+  }
+
+  public String getTimeSpanHours() {
+    double hours = this.getHours();
+    String hh = String.valueOf((int) hours);
+    String mm = String.format("%02d", Math.round((hours % 1) * 60));
+    return hh + ":" + mm;
   }
 }
