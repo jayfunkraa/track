@@ -1,6 +1,7 @@
 package uk.co.jamhammer.track.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Task {
@@ -15,6 +16,9 @@ public class Task {
 
   @ManyToOne
   private Project project;
+
+  @OneToMany(mappedBy = "task")
+  private List<Booking> bookings;
 
   public Task() {
   }
@@ -57,5 +61,13 @@ public class Task {
 
   public void setProject(Project project) {
     this.project = project;
+  }
+
+  public List<Booking> getBookings() {
+    return bookings;
+  }
+
+  public void setBookings(List<Booking> bookings) {
+    this.bookings = bookings;
   }
 }

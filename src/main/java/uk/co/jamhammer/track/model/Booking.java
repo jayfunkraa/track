@@ -2,10 +2,8 @@ package uk.co.jamhammer.track.model;
 
 import java.time.LocalDate;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -14,9 +12,14 @@ public class Booking {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
   private LocalDate date;
+
   private double hours;
   private String remarks;
+
+  @ManyToOne
+  private Task task;
 
   public Booking() {
   }
@@ -51,5 +54,13 @@ public class Booking {
 
   public void setRemarks(String remarks) {
     this.remarks = remarks;
+  }
+
+  public Task getTask() {
+    return task;
+  }
+
+  public void setTask(Task task) {
+    this.task = task;
   }
 }
